@@ -11,7 +11,11 @@ mcp = FastMCP("efa")
 # Global state for current provider URL
 current_provider_url = os.getenv("EFA_BASE_URL", "https://www.efa.de/efa/")
 
+# HTTP request timeout in seconds
+HTTP_TIMEOUT = 10.0
+
 @mcp.resource("efa://provider_url")
+@mcp.tool()
 async def get_provider_url() -> str:
     """Get the current EFA provider URL."""
     return current_provider_url
@@ -55,7 +59,7 @@ async def list_providers() -> List[Dict[str, Any]]:
 @mcp.tool()
 async def find_stop(name: str) -> Dict[str, str]:
     """Find a stop by name and return the best match."""
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as client:
         params = {
             'commonMacro': 'stopfinder',
             'type_sf': 'any',
@@ -106,7 +110,7 @@ async def departure_monitor(stop_id: str, time: Optional[str] = None, limit: Opt
         dt = parser.parse(time)
         params['itdDate'] = dt.strftime('%Y%m%d')
         params['itdTime'] = dt.strftime('%H%M')
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as client:
         resp = await client.get(f"{current_provider_url}XML_DM_REQUEST", params=params)
         resp.raise_for_status()
         data = resp.json()
@@ -156,7 +160,7 @@ async def trip_request(origin_id: str, dest_id: str, time: Optional[str] = None,
         params['itdDate'] = dt.strftime('%Y%m%d')
         params['itdTime'] = dt.strftime('%H%M')
         params['itdTripDateTimeDepArr'] = 'arr' if is_arrival else 'dep'
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as client:
         resp = await client.get(f"{current_provider_url}XML_TRIP_REQUEST2", params=params)
         resp.raise_for_status()
         data = resp.json()
