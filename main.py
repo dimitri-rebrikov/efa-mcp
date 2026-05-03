@@ -104,6 +104,7 @@ async def departure_monitor(stop_id: str, time: Optional[str] = None, limit: Opt
         'name_dm': stop_id,
         'useRealtime': '1',
         'limit': str(limit),
+        'mode': 'direct',
         'outputFormat': 'rapidJSON'
     }
     if time:
