@@ -192,6 +192,11 @@ async def trip_request(origin_id: str, dest_id: str, time: Optional[str] = None,
             connections.append({"legs": legs})
         return connections
 
-if __name__ == "__main__":
+def main():
+    """Entry point for the EFA MCP server."""
     import asyncio
     asyncio.run(mcp.run())
+
+
+if __name__ == "__main__":
+    main()

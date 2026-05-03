@@ -46,7 +46,7 @@ To use this MCP server with any AI agent that supports MCP (e.g. Cline, Claude D
       "command": "uvx",
       "args": [
         "--from", "git+https://github.com/dimitri-rebrikov/efa-mcp.git",
-        "python", "main.py"
+        "efa-mcp"
       ]
     }
   }
