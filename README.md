@@ -46,6 +46,7 @@ To use this MCP server with any AI agent that supports MCP (e.g. Cline, Claude D
       "command": "uvx",
       "args": [
         "--from", "git+https://github.com/dimitri-rebrikov/efa-mcp.git",
+        "--refresh",
         "efa-mcp"
       ]
     }
@@ -53,7 +54,7 @@ To use this MCP server with any AI agent that supports MCP (e.g. Cline, Claude D
 }
 ```
 
-> **Note**: `uvx` automatically fetches and runs the package from the specified Git repository, so no manual installation is needed when using this method. The configuration above works with any MCP-compatible client.
+> **Note**: `uvx` automatically fetches and runs the package from the specified Git repository, so no manual installation is needed when using this method. The `--refresh` flag ensures dependencies are updated on each start. The configuration above works with any MCP-compatible client.
 
 ## API Reference
 
