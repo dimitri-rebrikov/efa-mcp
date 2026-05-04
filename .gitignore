@@ -34,3 +34,5 @@ Thumbs.db
 
 # Project specific
 docs/
+temp_test_*/
+scratch*/

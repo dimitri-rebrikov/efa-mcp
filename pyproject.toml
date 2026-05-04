@@ -45,7 +45,3 @@ dev = [
 asyncio_mode = "auto"
 testpaths = ["tests"]
 
-[tool.uv.workspace]
-members = [
-    "temp_test_project",
-]
