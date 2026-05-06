@@ -57,10 +57,10 @@ def validate_departure(dep, allow_estimated_none: bool = True):
 def validate_leg(leg):
     """Validate a single trip leg has all required fields with proper types.
 
-    Walking legs (type 99) may have empty number and direction fields.
+    Walking legs (type "footpath" or "99") may have empty number and direction fields.
     """
     leg_type = leg.type
-    is_walking = leg_type == "99"
+    is_walking = leg_type in ("footpath", "99")
 
     assert leg.type, "type should not be empty"
 

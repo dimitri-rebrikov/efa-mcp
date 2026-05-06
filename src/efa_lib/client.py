@@ -168,7 +168,7 @@ class EFAClient:
                     Departure(
                         planned_time=dep,
                         estimated_time=est if est else None,
-                        type=str(trans.get("product", {}).get("class", "")),
+                        type=trans.get("product", {}).get("name", ""),
                         number=trans.get("number", ""),
                         direction=trans.get("destination", {}).get("name", ""),
                     )
@@ -238,9 +238,7 @@ class EFAClient:
                     arr = leg.get("destination", {})
                     legs.append(
                         {
-                            "type": str(
-                                trans.get("product", {}).get("class", "")
-                            ),
+                            "type": trans.get("product", {}).get("name", ""),
                             "number": trans.get("number", ""),
                             "direction": trans.get("destination", {}).get(
                                 "name", ""

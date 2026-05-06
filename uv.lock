@@ -463,17 +463,10 @@ name = "efa-mcp"
 version = "0.2.0"
 source = { editable = "." }
 dependencies = [
+    { name = "fastmcp" },
     { name = "httpx" },
     { name = "pydantic" },
     { name = "python-dateutil" },
-]
-
-[package.optional-dependencies]
-all = [
-    { name = "fastmcp" },
-]
-mcp = [
-    { name = "fastmcp" },
 ]
 
 [package.dev-dependencies]
@@ -485,13 +478,13 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "efa-mcp", extras = ["mcp"], marker = "extra == 'all'" },
-    { name = "fastmcp", marker = "extra == 'mcp'", specifier = ">=0.9.0" },
+    { name = "efa-mcp", marker = "extra == 'all'" },
+    { name = "fastmcp", specifier = ">=0.9.0" },
     { name = "httpx", specifier = ">=0.25.0" },
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "python-dateutil", specifier = ">=2.8.0" },
 ]
-provides-extras = ["mcp", "all"]
+provides-extras = ["all"]
 
 [package.metadata.requires-dev]
 dev = [
